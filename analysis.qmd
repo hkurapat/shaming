@@ -2,4 +2,49 @@
 title: "Shaming"
 author: "Harshil Kurapati"
 format: html
+execute:
+  echo: false
 ---
+
+```{r}
+#| message: false
+library(tidyverse)
+library(primer.data)
+```
+
+```{r}
+#| cache: true
+x <- shaming |>
+  mutate(civ_engage = primary_00 + primary_02 + primary_04 +
+                      general_00 + general_02 + general_04) |>
+  select(primary_06, treatment, sex, age, civ_engage) |>
+  drop_na() |>
+  mutate(voter_class = factor(case_when(
+    civ_engage %in% c(5, 6) ~ "Always Vote",
+    civ_engage %in% c(3, 4) ~ "Sometimes Vote",
+    civ_engage %in% c(1, 2) ~ "Rarely Vote"),
+    levels = c("Rarely Vote", "Sometimes Vote", "Always Vote"))) |>
+  mutate(voted = as.factor(primary_06)) |>
+  drop_na()
+```
+
+```{r}
+x |>
+  group_by(treatment, voter_class) |>
+  summarise(turnout = mean(primary_06), .groups = "drop") |>
+  ggplot(aes(x = treatment, y = turnout, fill = treatment)) +
+  geom_col() +
+  facet_wrap(~ voter_class) +
+  scale_y_continuous(labels = scales::label_percent()) +
+  labs(
+    title = "Turnout by treatment and voter class",
+    subtitle = "Neighbors postcard effect varies by past voting history",
+    x = "Treatment",
+    y = "Turnout rate",
+    caption = "Source: Gerber, Green, Larimer 2008 via primer.data::shaming"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Voter turnout in low-salience primary elections is highly sensitive to social pressure tactics. Using Gerber, Green, and Larimer's 2008 Michigan field experiment with about 344,000 registered voters we estimate the average causal effect of the Neighbors postcard relative to no postcard on the probability of voting in the August 2006 primary.
