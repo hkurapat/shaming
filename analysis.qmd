@@ -10,6 +10,8 @@ execute:
 #| message: false
 library(tidyverse)
 library(primer.data)
+library(tidymodels)
+library(broom)
 ```
 
 ```{r}
@@ -47,4 +49,4 @@ x |>
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-Voter turnout in low-salience primary elections is highly sensitive to social pressure tactics. Using Gerber, Green, and Larimer's 2008 Michigan field experiment with about 344,000 registered voters we estimate the average causal effect of the Neighbors postcard relative to no postcard on the probability of voting in the August 2006 primary.
+Voter turnout in low-salience primary elections is highly sensitive to social pressure tactics. Using Gerber, Green, and Larimer's 2008 Michigan field experiment with about 344,000 registered voters we estimate the average causal effect of the Neighbors postcard relative to no postcard on the probability of voting in the August 2006 primary. One concern is that this experiment was conducted in Michigan in 2006 and political messaging norms have changed significantly since then so the persuasive power of social pressure postcards on a 2026 Texas electorate might be quite different.
