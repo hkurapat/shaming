@@ -82,7 +82,182 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Voter turnout in low-salience primary elections is highly sensitive to social pressure tactics. Using Gerber, Green, and Larimer’s 2008 Michigan field experiment with about 344,000 registered voters we estimate the average causal effect of the Neighbors postcard relative to no postcard on the probability of voting in the August 2006 primary. One concern is that this experiment was conducted in Michigan in 2006 and political messaging norms have changed significantly since then so the persuasive power of social pressure postcards on a 2026 Texas electorate might be quite different.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code># Attaching packages: easystats 0.7.6
+✔ bayestestR  0.18.1   ✔ correlation 0.8.8 
+✔ datawizard  1.3.1    ✔ effectsize  1.0.2 
+✔ insight     1.5.1    ✔ modelbased  0.15.0
+✔ performance 0.17.0   ✔ parameters  0.29.1
+✔ report      0.6.4    ✔ see         0.14.0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The model has an integer or a discrete response variable.
+  It is recommended to switch to a dot-plot style, e.g.
+  `plot(check_model(model), type = "discrete_dots"`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ignoring unknown labels:
+• size : ""</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 17 × 7
+   term                 estimate std.error statistic  p.value conf.low conf.high
+   &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+ 1 (Intercept)          -2.43     0.0220    -111.    0        -2.48      -2.39  
+ 2 age                   0.0121   0.000287    42.2   0         0.0115     0.0126
+ 3 sexMale               0.0356   0.00757      4.70  2.60e- 6  0.0207     0.0504
+ 4 treatmentCivic Duty   0.0861   0.0444       1.94  5.27e- 2 -0.00162    0.173 
+ 5 treatmentHawthorne    0.0707   0.0453       1.56  1.18e- 1 -0.0187     0.159 
+ 6 treatmentSelf         0.202    0.0430       4.70  2.56e- 6  0.118      0.286 
+ 7 treatmentNeighbors    0.359    0.0416       8.62  6.86e-18  0.277      0.440 
+ 8 voter_classSometime…  0.820    0.0203      40.3   0         0.780      0.860 
+ 9 voter_classAlways V…  1.61     0.0216      74.6   0         1.57       1.65  
+10 treatmentCivic Duty…  0.0308   0.0471       0.654 5.13e- 1 -0.0610     0.124 
+11 treatmentHawthorne:…  0.0589   0.0478       1.23  2.18e- 1 -0.0343     0.153 
+12 treatmentSelf:voter…  0.0532   0.0457       1.16  2.44e- 1 -0.0359     0.143 
+13 treatmentNeighbors:…  0.0406   0.0442       0.917 3.59e- 1 -0.0457     0.128 
+14 treatmentCivic Duty… -0.0513   0.0502      -1.02  3.07e- 1 -0.149      0.0476
+15 treatmentHawthorne:…  0.0627   0.0509       1.23  2.18e- 1 -0.0366     0.163 
+16 treatmentSelf:voter… -0.00578  0.0489      -0.118 9.06e- 1 -0.101      0.0905
+17 treatmentNeighbors:…  0.00627  0.0478       0.131 8.96e- 1 -0.0871     0.100 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Estimates and 95% CIs on log-odds scale. Source: Gerber, Green, Larimer 2008 via primer.data::shaming</caption>
+<colgroup>
+<col style="width: 62%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">conf.low</th>
+<th style="text-align: right;">conf.high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-2.434</td>
+<td style="text-align: right;">-2.478</td>
+<td style="text-align: right;">-2.391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">0.013</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sexMale</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">0.050</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatmentCivic Duty</td>
+<td style="text-align: right;">0.086</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">0.173</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">treatmentHawthorne</td>
+<td style="text-align: right;">0.071</td>
+<td style="text-align: right;">-0.019</td>
+<td style="text-align: right;">0.159</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatmentSelf</td>
+<td style="text-align: right;">0.202</td>
+<td style="text-align: right;">0.118</td>
+<td style="text-align: right;">0.286</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">treatmentNeighbors</td>
+<td style="text-align: right;">0.359</td>
+<td style="text-align: right;">0.277</td>
+<td style="text-align: right;">0.440</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">voter_classSometimes Vote</td>
+<td style="text-align: right;">0.820</td>
+<td style="text-align: right;">0.780</td>
+<td style="text-align: right;">0.860</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">voter_classAlways Vote</td>
+<td style="text-align: right;">1.609</td>
+<td style="text-align: right;">1.567</td>
+<td style="text-align: right;">1.651</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatmentCivic Duty:voter_classSometimes Vote</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">-0.061</td>
+<td style="text-align: right;">0.124</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">treatmentHawthorne:voter_classSometimes Vote</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">-0.034</td>
+<td style="text-align: right;">0.153</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatmentSelf:voter_classSometimes Vote</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">-0.036</td>
+<td style="text-align: right;">0.143</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">treatmentNeighbors:voter_classSometimes Vote</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">-0.046</td>
+<td style="text-align: right;">0.128</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatmentCivic Duty:voter_classAlways Vote</td>
+<td style="text-align: right;">-0.051</td>
+<td style="text-align: right;">-0.149</td>
+<td style="text-align: right;">0.048</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">treatmentHawthorne:voter_classAlways Vote</td>
+<td style="text-align: right;">0.063</td>
+<td style="text-align: right;">-0.037</td>
+<td style="text-align: right;">0.163</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatmentSelf:voter_classAlways Vote</td>
+<td style="text-align: right;">-0.006</td>
+<td style="text-align: right;">-0.101</td>
+<td style="text-align: right;">0.090</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">treatmentNeighbors:voter_classAlways Vote</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">-0.087</td>
+<td style="text-align: right;">0.100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Voter turnout in low-salience primary elections is highly sensitive to social pressure tactics. Using Gerber, Green, and Larimer’s 2008 Michigan field experiment with about 344,000 registered voters we estimate the average causal effect of the Neighbors postcard relative to no postcard on the probability of voting in the August 2006 primary. One concern is that this experiment was conducted in Michigan in 2006 and political messaging norms have changed significantly since then so the persuasive power of social pressure postcards on a 2026 Texas electorate might be quite different. We model the probability of voting using logistic regression as a function of age, sex, treatment, and voter class with an interaction between treatment and voter class to allow the postcard effect to vary by past voting history.</p>
 
 </main>
 <!-- /main column -->
